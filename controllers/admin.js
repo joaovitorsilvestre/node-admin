@@ -11,9 +11,7 @@ var getDocumentToEdit = require('./admin/api/getDocumentToEdit.js');
 
 router.get('/', index);
 
-// TODO because of the follows urls dont have the slash at end
-// it they seem lick each other, can happen that one be caller instead another
-router.get('/api/getfields?:model', getFields);
+router.get('/api/getfields', getFields);
 router.get('/api/getmodels', getModels);
 router.post('/api/savedata', saveData);
 router.get('/api/getdocuments', getDocuments);

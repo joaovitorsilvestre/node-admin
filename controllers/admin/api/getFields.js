@@ -7,7 +7,7 @@ module.exports = function(req, res, next) {
         if (err) {
             res.status(400);
         } else {
-            res.status(200);
+            res.set({'ETag': '1'}); //avoid 304-not modified
             res.json(fieldsList);
         };
     });

@@ -9,6 +9,7 @@ angular.module('index')
             if (err) return $window.location.href = '/admin'
 
             $scope.modelData.fields = response.data
+            console.log(response);
         });
 
         $scope.saveNew = function(_data) {
