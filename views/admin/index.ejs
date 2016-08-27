@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> <%= title %> </title>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+        <script src="/admin/js/indexApp.js"></script>
+        <script src="/admin/js/config/routeConfig.js"></script>
+        <script src="/admin/js/controllers/indexCtrl.js"></script>
+        <script src="/admin/js/controllers/displayDocumentsCtrl.js"></script>
+        <script src="/admin/js/controllers/editDocumentCtrl.js"></script>
+        <script src="/admin/js/controllers/createNewCtrl.js"></script>
+        <script src="/admin/js/directives/renderModelsDirective.js"></script>
+        <script src="/admin/js/directives/renderFieldsDirective.js"></script>
+        <script src="/admin/js/services/saveData.js"></script>
+        <script src="/admin/js/services/getFieldsService.js"></script>
+        <script src="/admin/js/services/getDocumentsService.js"></script>
+        <script src="/admin/js/services/getDocumentToEditService.js"></script>
+    </head>
+    <body ng-app="index">
+        <div ng-view></div>
+    </body>
+</html>

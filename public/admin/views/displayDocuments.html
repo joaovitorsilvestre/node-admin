@@ -1,0 +1,18 @@
+<table>
+    <tr>
+        <td> Related Name </td>
+        <td> Id </td>
+    </tr>
+
+    <tr ng-repeat="doc in documentsToDisplay">
+        <td>
+            <a href="#editdocument/{{ model }}/{{ doc.id }}">
+                {{ doc.relatedAdminName }}
+            </a>
+        </td>
+        <td> {{ doc.id }} </td>
+    </tr>
+
+</table>
+
+<a href="#createnew/{{ model }}">Create New</a>

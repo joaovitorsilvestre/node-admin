@@ -1,0 +1,6 @@
+<render-fields fields="modelData.fieldsWithValues" submit-button-text="Save"
+    on-submit-form="saveEdited">
+</render-fields>
+
+<b ng-if="errorOnSave">{{ errorOnSave.error }}</b>
+<b ng-if="successOnSave.statusMsg">{{ successOnSave.statusMsg }}</b>
