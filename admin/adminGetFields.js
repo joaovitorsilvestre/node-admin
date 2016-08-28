@@ -12,7 +12,7 @@ module.exports = function(model, documentId, callback) {
             addValues(modelToGetFields, documentId, fields, (_err, _fields) => {
                 if (_err) return callback(_err);
 
-                callback(null, fields)
+                callback(null, _fields)
             })
         } else {
             // return normal without values
@@ -44,8 +44,10 @@ module.exports = function(model, documentId, callback) {
 
             fieldsFormated[_name] = fieldsObject[_name].options;
             fieldsFormated[_name]['name'] = _name;
+            fieldsFormated[_name]['value'] = null;
         });
 
+        console.log('saida função', fieldsFormated);
         return fieldsFormated;
     };
 
