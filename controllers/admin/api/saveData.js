@@ -3,6 +3,8 @@ var adminSaveData = require('../../../admin/adminSaveData');
 module.exports = function(req, res, next) {
     var dataToSave = req.body;
 
+    if (!dataToSave) return res.status(400);
+
     adminSaveData(dataToSave, (err) => {
         if (err) {
             if (err.code == 11000){

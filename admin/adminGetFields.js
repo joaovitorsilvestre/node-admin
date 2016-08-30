@@ -1,57 +1,46 @@
 var admin = require('./admin');
 
-module.exports = function(model, documentId, callback) {
-    var modelToGetFields = admin[model];
-
-    // verify if the model that is to get fields is registred in admin.js
-    if (modelToGetFields) {
-        var fields = getModelFields(modelToGetFields);
-
-        if (documentId) {
-            // return with the fields values of the existing document
-            addValues(modelToGetFields, documentId, fields, (_err, _fields) => {
-                if (_err) return callback(_err);
-
-                callback(null, _fields)
-            })
-        } else {
-            // return normal without values
-            return callback(null, fields);
+function getModelFields(model) {
+    /*
+    that will be sended to callback and it will be sommethin as
+        {   username : {name: username, require:true, unique:true}},
+            password : {name: password, require:true}
         }
+    */
+    var fieldsObject = model.schema.paths;
+    var fieldsNames = Object.keys(fieldsObject);
+    var fieldsFormated = {};
 
-    } else {
-        var error = new Error('This model doenst exist')
-        return callback(error);
-    }
+    // put in the fieldsFormated thigs that angular will use to verify
+    // if the input is required for instance
+    fieldsNames.forEach( (_name) => {
+        if (_name == '_id' || _name == 'SchemaNumber'
+            || _name == '__v' || _name == 'relatedAdminName') return;
 
-    function getModelFields(model) {
-        /*
-        that will be sended to callback and it will be sommethin as
-            {   username : {name: username, require:true, unique:true}},
-                password : {name: password, require:true}
-            }
-        */
+        fieldsFormated[_name] = fieldsObject[_name].options;
+        fieldsFormated[_name]['name'] = _name;
+        fieldsFormated[_name]['value'] = null;
+    });
+    return fieldsFormated;
+};
 
-        var fieldsObject = model.schema.paths;
-        var fieldsNames = Object.keys(fieldsObject);
-        var fieldsFormated = {};
+module.exports.existingDoc = function(modelName, id, callback) {
+    var modelCompiled = admin[modelName];
 
-        // put in the fieldsFormated thigs that angular will use to verify
-        // if the input is required for instance
-        fieldsNames.forEach( (_name) => {
-            if (_name == '_id' || _name == 'SchemaNumber'
-                || _name == '__v' || _name == 'relatedAdminName') return;
+    if (modelCompiled) {
+        modelFields = getModelFields(modelCompiled);
 
-            fieldsFormated[_name] = fieldsObject[_name].options;
-            fieldsFormated[_name]['name'] = _name;
-            fieldsFormated[_name]['value'] = null;
+        getFieldsValues(modelCompiled, id, modelFields, (err, fieldsValues) =>{
+            if (err) return callback(err);
+
+            callback(null, fieldsValues);
         });
-
-        console.log('saida função', fieldsFormated);
-        return fieldsFormated;
+    } else {
+        var error = new Error('This model doenst exist');
+        return callback(error);
     };
 
-    function addValues(model, id, fieldsAlreadyFormated, callback) {
+    function getFieldsValues(model, id, fieldsAlreadyFormated, callback) {
         var documentFind = new Promise( (resolve, reject) => {
             model.findById(id, (_err, _document) => {
                 if (_err) reject(_err);
@@ -59,8 +48,8 @@ module.exports = function(model, documentId, callback) {
                 if (_document) {
                     resolve(_document);
                 } else {
-                    reject(new Error('Document doesnt exists.'))
-                }
+                    reject(new Error('Document doesnt exists.'));
+                };
             });
         });
 
@@ -76,5 +65,16 @@ module.exports = function(model, documentId, callback) {
         }).catch( (_err) => {
             callback(_err);
         });
+    };
+};
+
+module.exports.onlyFields = function(modelName, callback) {
+    var modelCompiled = admin[modelName];
+
+    if (modelName) {
+        return callback(null, getModelFields(modelCompiled));
+    } else {
+        var error = new Error('This model doenst exist');
+        return callback(error);
     };
 };

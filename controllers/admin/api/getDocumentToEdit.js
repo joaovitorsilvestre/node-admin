@@ -4,9 +4,14 @@ module.exports = function(req, res, next) {
     var modelToGetFields = req.query.model;
     var idOfDocument = req.query.id;
 
-    adminGetFields( modelToGetFields, idOfDocument, (err, fieldsList) => {
+    if (!modelToGetFields || !idOfDocument) {
+        return res.status(400);
+    };
+
+    adminGetFields.existingDoc(modelToGetFields, idOfDocument, (err, fieldsList) => {
         if (err) {
-            res.status(400).send(_err);
+            console.log(err);
+            res.status(400);
         } else {
             res.status(200);
             res.json(fieldsList);
