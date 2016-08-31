@@ -7,6 +7,7 @@ function getModelFields(model) {
             password : {name: password, require:true}
         }
     */
+
     var fieldsObject = model.schema.paths;
     var fieldsNames = Object.keys(fieldsObject);
     var fieldsFormated = {};
@@ -17,9 +18,12 @@ function getModelFields(model) {
         if (_name == '_id' || _name == 'SchemaNumber'
             || _name == '__v' || _name == 'relatedAdminName') return;
 
-        fieldsFormated[_name] = fieldsObject[_name].options;
+        var fieldsOptions = (fieldsObject[_name].options);
+
+        fieldsFormated[_name] = fieldsOptions;
         fieldsFormated[_name]['name'] = _name;
         fieldsFormated[_name]['value'] = null;
+        fieldsFormated[_name]['typeFormat'] = fieldsOptions.type.name;
     });
     return fieldsFormated;
 };

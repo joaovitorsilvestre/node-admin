@@ -2,8 +2,14 @@
 
     <span ng-repeat="field in fields track by $index">
         <b> {{ field.name }}: </b>
-        <input type="text" name="field_{{ $index }}" ng-model="field.value"
-        ng-required="field.require" placeholder="{{ field.name }}">
+        <input
+        format-fields
+        format-type = "field.type"
+        ng-model="field.value"
+        type="text"
+        name="field_{{ $index }}"
+        ng-required="field.require"
+        placeholder="{{ field.name }}">
         <b ng-show="field.require && fieldsForm.field_{{ $index }}.$dirty &&
         fieldsForm.field_{{ $index }}.$invalid">
             This field is required

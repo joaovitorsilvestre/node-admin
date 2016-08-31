@@ -7,11 +7,15 @@ var UserSchema = mongoose.Schema({
     username: {
         type: String,
         require: true,
-        unique: true
+        unique: true,
+        lowercase: true
     },
     password: {
         type: String,
         require: true
+    },
+    created : {
+        type: Date
     },
     relatedAdminName: {
         type: String,
