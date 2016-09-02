@@ -1,10 +1,43 @@
 <form name="fieldsForm" ng-submit="sendData(fields)">
+    <table>
+        <tr ng-repeat="field in fields track by $index">
+            <td class="fieldsNamesTD">
+                <b class="fieldName" > {{ field.name }}: </b>
+            </td>
+            <td class="fieldsInputsTD">
+                <input
+                format-fields
+                format-type = "field.typeFormat"
+                ng-model="field.value"
+                type="text"
+                name="field_{{ $index }}"
+                ng-required="field.require"
+                placeholder="{{ field.name }}">
+
+            </td>
+            <td class="fieldAlertTD">
+                <b class="fieldAlert" ng-show="field.require && fieldsForm.field_{{ $index }}.$dirty &&
+                fieldsForm.field_{{ $index }}.$invalid">
+                this field is required
+                </b>
+            </td>
+        </tr>
+    </table>
+    <button type="submit" ng-disabled="!fieldsForm.$valid">{{ submitButtonText }}</button>
+</form>
+
+<button type="submit">Delete Document</button>
+
+<hr>
+
+
+<!-- <form name="fieldsForm" ng-submit="sendData(fields)">
 
     <span ng-repeat="field in fields track by $index">
         <b> {{ field.name }}: </b>
         <input
         format-fields
-        format-type = "field.type"
+        format-type = "field.typeFormat"
         ng-model="field.value"
         type="text"
         name="field_{{ $index }}"
@@ -19,4 +52,7 @@
     <button type="submit" ng-disabled="!fieldsForm.$valid">{{ submitButtonText }}</button>
 </form>
 
+<button type="submit">Delete Document</button>
+
 <hr>
+--->

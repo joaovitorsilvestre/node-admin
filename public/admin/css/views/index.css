@@ -1,0 +1,37 @@
+#content {
+    width: 70%;
+    height: 80%;
+    margin-left: 15%;
+}
+
+#content .models .table_models {
+    width: 20%;
+    height: 10%;
+    float: left;
+}
+
+#content .models th, td {
+    width: 100%;
+    height: auto;
+}
+
+#content .models a {
+    display: block;
+    padding:14px 25px;
+    text-transform:uppercase;
+    text-decoration: none;
+    font-size:16px;
+    color:#ccc;
+    background: #424242;
+}
+
+#content .models a:hover {
+    background: #545454;
+}
+
+#content .models #model_preview {
+    width: 70%;
+    height: 100%;
+    float: right;
+    background-color: #b6b6b6;
+}

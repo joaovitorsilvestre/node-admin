@@ -1,11 +1,11 @@
 angular.module('index')
     .controller('createNewCtrl', function($scope, $routeParams, $window, getFields, saveData) {
         $scope.modelData = {};
-        var model = $routeParams.model;
+        $scope.model = $routeParams.model;
         $scope.errorOnSave;
         $scope.successOnSave;
 
-        getFields(model, function(err, response) {
+        getFields($scope.model, function(err, response) {
             if (err) return $window.location.href = '/admin'
 
             $scope.modelData.fields = response.data
@@ -13,7 +13,7 @@ angular.module('index')
         });
 
         $scope.saveNew = function(_data) {
-            var _model = model;
+            var _model = $scope.model;
 
             saveData.send(_model, null, _data)
                 .then(function successCallback(response) {

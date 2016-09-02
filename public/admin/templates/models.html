@@ -1,4 +1,11 @@
-<h2>Models</h2>
-<ng-repeat ng-repeat="model in models">
-    <a href="#/displaydocuments/{{ model }}">{{ model }}</a>
-</ng-repeat>
+<table class="table_models">
+    <tr ng-repeat="model in models">
+        <td>
+            <a href="#/displaydocuments/{{ model }}">{{ model }}</a>
+        </td>
+    </tr>
+</table>
+
+<div id="model_preview">
+
+</div>

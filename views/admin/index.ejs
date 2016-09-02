@@ -3,6 +3,10 @@
     <head>
         <meta charset="utf-8">
         <title> <%= title %> </title>
+        <link rel="stylesheet" href="/admin/css/index.css" type="text/css">
+        <link rel="stylesheet" href="/admin/css/views/index.css" type="text/css">
+        <link rel="stylesheet" href="/admin/css/views/createNew.css" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Wire+One" rel="stylesheet">
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
         <script src="/admin/js/indexApp.js"></script>
@@ -20,6 +24,11 @@
         <script src="/admin/js/services/getDocumentToEditService.js"></script>
     </head>
     <body ng-app="index">
-        <div ng-view></div>
+        <header class>
+            <div class="container">
+                <label>node Admin</label>
+            </div>
+        </header>
+        <div id="content" ng-view></div>
     </body>
 </html>

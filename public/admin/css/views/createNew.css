@@ -1,0 +1,49 @@
+.createNewRenderFields form {
+    width: 100%;
+    height: 100%;
+}
+
+.createNewRenderFields .fieldsNamesTD {
+    width: 5%;
+    height: auto;
+}
+
+.createNewRenderFields .fieldsInputsTD {
+    width: 20%;
+    height: auto;
+}
+
+.createNewRenderFields .fieldAlertTD {
+    width: 20%;
+    height: auto;
+}
+
+.createNewRenderFields form input{
+    width: 80%;
+    height: 80%;
+}
+
+.createNewRenderFields .fieldName {
+    font-family: 'Wire One', sans-serif;
+    font-size: 34px;
+}
+
+.createNewRenderFields .fieldAlert {
+    font-family: 'Wire One', sans-serif;
+    font-size: 26px;
+    color: #c44141;
+}
+
+.createNewRenderFields form button {
+    width: 20%;
+    margin-top: 5%;
+    min-height: 5%;
+    height: auto;
+    border: none;
+    color:#ccc;
+    background: #424242;
+}
+
+.createNewRenderFields form button:hover {
+    background: #545454;
+}

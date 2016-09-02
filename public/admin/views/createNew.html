@@ -1,10 +1,11 @@
-<div>
-    <render-fields fields="modelData.fields" submit-button-text="Create"
-    on-submit-form="saveNew">
+<p class="pageName">Create New - {{ model }}</p>
 
-    </render-fields>
-    <b ng-if="errorOnSave">{{ errorOnSave.error }}</b>
-    <b ng-if="successOnSave.statusMsg">{{ successOnSave.statusMsg }}</b>
-</div>
+<render-fields class="createNewRenderFields" fields="modelData.fields" submit-button-text="Create"
+on-submit-form="saveNew">
+
+</render-fields>
+<b ng-if="errorOnSave">{{ errorOnSave.error }}</b>
+<b ng-if="successOnSave.statusMsg">{{ successOnSave.statusMsg }}</b>
+
 
 {{ modelData.fields }}
